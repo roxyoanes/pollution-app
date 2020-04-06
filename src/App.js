@@ -46,6 +46,7 @@ const coord = position =>
           hello
         </p>
         <p>{pollution.results[0].city}</p>
+        <p>{pollution.results[0].value} {pollution.results[0].parameter}</p>
       </div>
     );
   } else {
