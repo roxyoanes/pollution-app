@@ -1,9 +1,8 @@
-const APPID = "4d099c859e69ede3e209c51a94a6e81b";
 
-export const weatherApi = async (location) => {
+export const pollutionApi = async (location) => {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.long}&  	 appid=${APPID}&units=metric`
+      `https://api.openaq.org/v1/measurements?coordinates=${location.lat},${location.long}&parameter=pm25&radius=15000&limit=1`
     );
     const data = await response.json();
     return data;
