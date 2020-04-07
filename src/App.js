@@ -40,13 +40,32 @@ const coord = position =>
   if(error){
   return <p>{error}</p>
   } else if(pollution){
+    let description = ""
+      if(pollution.results[0].value <= 50) {
+        description = "good"
+      } else if (pollution.results[0].value <= 100) {
+        description = "moderate"
+      } else if(pollution.results[0].value <= 150) {
+        description = "unhealthy for sensitive groups"
+      } else if(pollution.results[0].value <= 200) {
+        description = "unhealthy"
+      } else if(pollution.results[0].value <= 300) {
+        description = "very unhealthy"
+      } else {
+        description = "hazardous"
+      }
+      let city = ""
+        if(pollution.results[0].city.includes("/")){
+          const splitCity = pollution.results[0].city.split("/");
+          city = splitCity[1];
+        } else {
+          city = pollution.results[0].city
+        }
     return (
       <div className="App">
-        <p>
-          hello
-        </p>
-        <p>{pollution.results[0].city}</p>
+        <p>{city}</p>
         <p>{pollution.results[0].value} {pollution.results[0].parameter}</p>
+        <p>{description}</p>
       </div>
     );
   } else {
